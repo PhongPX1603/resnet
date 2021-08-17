@@ -83,5 +83,5 @@ class Resnet(nn.Module):
 def Resnet18img_channels=3, num_classes=1000):
 	return Resnet(block=block, layers=[2, 2, 2, 2], image_channels=img_channels, num_classes=num_classes)
 
-def Resnet101(img_channels=3, num_classes=1000):
+def Resnet50(img_channels=3, num_classes=1000):
 	return Resnet(block=block, layers=[3, 4, 6, 3], image_channels=img_channels, num_classes=num_classes)
