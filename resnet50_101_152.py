@@ -26,8 +26,8 @@ class block(nn.Module):
 		x = self.conv3(x)
 		x = self.bn3(x)
 
-		if self.identity_downsample is not None:
-			identity = self.identity_downsample(identity)
+		if self.identity_downsample is not None:			# identity_downsample is defined at line 77-81. It's just a sequency of normal CNN
+			identity = self.identity_downsample(identity) 		# make identity's n_C = x's out_channel 
 
 		x += identity
 		x = self.relu(x)
@@ -80,11 +80,11 @@ class Resnet(nn.Module):
 								      stride=stride),
 							    nn.BatchNorm2d(out_channels*4))
 
-		layers.append(block(self.in_channels, out_channels, identity_downsample, stride))
+		layers.append(block(self.in_channels, out_channels, identity_downsample, stride)) 	# 1st block. If line 76 is run that similar next to a new layer in ResNet
 		self.in_channels = out_channels * 4
 
 		for i in range(num_residual_block - 1):
-			layers.append(block(self.in_channels, out_channels))
+			layers.append(block(self.in_channels, out_channels))	 			# repeat from 2nd block to end of layer
 
 		return nn.Sequential(*layers)
 
